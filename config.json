@@ -1,7 +1,7 @@
 {
   "models": {
     "instructor": "qwen3:latest",
-    "coder": "qwen2.5-coder:latest"
+    "coder": "qwen3-coder:30b"
   },
   "settings": {
     "max_iterations": 100,

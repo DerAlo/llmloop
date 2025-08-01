@@ -80,7 +80,7 @@ class LLMLoop:
     
     def __init__(self):
         self.instructor_model = "qwen3:latest"
-        self.coder_model = "qwen2.5-coder:latest"
+        self.coder_model = "qwen3-coder:30b"
         self.max_iterations = 100
         self.current_iteration = 0
         self.conversation_history: List[Dict] = []
@@ -298,6 +298,19 @@ class LLMLoop:
            - Low Liquidity Avoidance
            - News Event Timing
            - Session-based Trading Rules
+        
+        7. CRITICAL MQL5 SYNTAX REQUIREMENTS (extrem wichtig!):
+           - NIEMALS MQL4 Syntax verwenden!
+           - ORDER_TYPE_BUY/ORDER_TYPE_SELL (nicht OP_BUY/OP_SELL)
+           - SymbolInfoDouble(_Symbol, SYMBOL_ASK) für Ask-Preis
+           - SymbolInfoDouble(_Symbol, SYMBOL_BID) für Bid-Preis
+           - #include <Trade\\Trade.mqh> und CTrade Klasse verwenden
+           - iMA() mit exakt 6 Parametern: iMA(_Symbol, timeframe, period, shift, method, price)
+           - iRSI() mit exakt 4 Parametern: iRSI(_Symbol, timeframe, period, price)
+           - Korrekte MqlTradeRequest Struktur für Orders
+           - AccountInfoDouble() für Account-Informationen
+           
+        Der Coder MUSS diese MQL5-Syntax-Regeln befolgen!
         
         GIB EXTREM DETAILLIERTE, SPEZIFISCHE ANWEISUNGEN die zu einem
         VOLLSTÄNDIGEN, PRODUKTIONSREIFEN Expert Advisor führen!
@@ -601,24 +614,45 @@ class LLMLoop:
     async def improve_code(self, client: OllamaClient, code: str, review: str) -> str:
         """Lässt den Coder den Code basierend auf dem Review verbessern"""
         system_prompt = """
-        Du bist ein SENIOR MQL5 Entwickler der Code-Reviews ERNST nimmt.
-        Du verbesserst Code basierend auf ALLEN Kritikpunkten vollständig.
+        Du bist der WELTBESTE MQL5 Expert Advisor Entwickler.
+        Du erstellst AUSSCHLIESSLICH kompilierbaren, produktionsreifen MQL5 Code.
         
-        ABSOLUT VERBOTEN:
-        - Entschuldigungen oder Ausreden  
-        - Unvollständige Verbesserungen
-        - Platzhalter oder TODO-Kommentare
-        - Ignorieren von Review-Kritik
+        🏆 DEINE SPEZIALITÄT: FTMO-konforme Expert Advisors mit PERFEKTER Syntax
         
-        ABSOLUT ERFORDERLICH:
-        - Behebe ALLE genannten Probleme vollständig
-        - Füge ALLE fehlenden Funktionen hinzu
-        - Entferne ALLE Platzhalter und TODOs
-        - Stelle sicher dass der Code KOMPILIERT
-        - Implementiere ECHTE Trading-Logik
-        - Verwende PROFESSIONELLE Code-Struktur
+        ╔══════════════════════════════════════════════════════════════════╗
+        ║              QWEN3-CODER: PREMIUM CODE GENERATION                ║
+        ╚══════════════════════════════════════════════════════════════════╝
         
-        Du wirst für VOLLSTÄNDIGE Verbesserungen bezahlt!
+        ⚡ ABSOLUTE REGELN:
+        1. NUR reiner MQL5 Code - KEINE Markdown, KEINE Erklärungen
+        2. Code beginnt mit //+------ Header
+        3. Code endet mit } (letzte Funktion)
+        4. JEDE Zeile muss kompilierbar sein
+        5. Verwende moderne MQL5 Syntax (nicht MQL4!)
+        
+        🎯 MQL5 SYNTAX REQUIREMENTS - BEFOLGE JEDEN PUNKT EXAKT:
+        
+        ❌ VERBOTENE MQL4 SYNTAX:
+        - OP_BUY, OP_SELL (verwende ORDER_TYPE_BUY, ORDER_TYPE_SELL)
+        - Ask, Bid (verwende SymbolInfoDouble())
+        - MarketInfo() (verwende SymbolInfoDouble(), SymbolInfoInteger())
+        - OrderClose() (verwende MqlTradeRequest/OrderSend())
+        - MODE_ASK, MODE_BID, MODE_DIGITS (verwende SYMBOL_* Konstanten)
+        - iMA() mit 7 Parametern (MQL5 hat nur 6 Parameter)
+        - iRSI() mit 6 Parametern (MQL5 hat nur 4 Parameter)
+        
+        ✅ KORREKTE MQL5 SYNTAX:
+        - ORDER_TYPE_BUY, ORDER_TYPE_SELL für Handelsrichtung
+        - SymbolInfoDouble(_Symbol, SYMBOL_ASK) für Ask-Preis
+        - SymbolInfoDouble(_Symbol, SYMBOL_BID) für Bid-Preis  
+        - SymbolInfoInteger(_Symbol, SYMBOL_DIGITS) für Nachkommastellen
+        - SymbolInfoDouble(_Symbol, SYMBOL_POINT) für Point-Wert
+        - iMA(_Symbol, PERIOD_CURRENT, 14, 0, MODE_SMA, PRICE_CLOSE) - NUR 6 Parameter!
+        - iRSI(_Symbol, PERIOD_CURRENT, 14, PRICE_CLOSE) - NUR 4 Parameter!
+        - CTrade trade; trade.Buy() für Kauforders
+        - #include <Trade\\Trade.mqh> für Trading-Klassen
+        
+        Du bist der BESTE Coder - zeige es!
         """
         
         improvement_prompt = f"""
