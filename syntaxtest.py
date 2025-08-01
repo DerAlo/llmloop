@@ -109,36 +109,42 @@ def test_single_code(code: str, name: str, metaeditor_path: str) -> bool:
     print(f"Temporäre Datei: {temp_file_path}")
     
     try:
-        # MetaEditor ausführen
-        print("Führe MetaEditor Kompilierung aus...")
+        # Verwende das PowerShell Compile-Skript für bessere Handhabung
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        compile_script = os.path.join(script_dir, "compile.ps1")
+        
+        print("Führe PowerShell Compile-Skript aus...")
         result = subprocess.run([
-            metaeditor_path,
-            '/compile',
-            temp_file_path,
-            '/log'
+            "powershell.exe",
+            "-ExecutionPolicy", "Bypass",
+            "-File", compile_script,
+            "-FileToCompile", temp_file_path
         ], capture_output=True, text=True, timeout=120, check=False)
         
         print(f"Return Code: {result.returncode}")
         print(f"STDOUT: {result.stdout}")
         print(f"STDERR: {result.stderr}")
         
-        # Prüfe Return Code - 0 bedeutet normalerweise Erfolg
+        # Das PowerShell-Skript gibt 0 bei Erfolg zurück
         compilation_successful = (result.returncode == 0)
-        print(f"Kompilierung Return Code 0: {compilation_successful}")
+        print(f"Kompilierung erfolgreich (Return Code 0): {compilation_successful}")
         
-        # Prüfe zusätzlich auf spezifische Fehlermeldungen
-        error_indicators = ["error", "Error", "ERROR", "failed", "Failed", "FAILED"]
-        has_errors = any(indicator in result.stderr for indicator in error_indicators) or \
-                    any(indicator in result.stdout for indicator in error_indicators)
-        print(f"Explizite Fehler im Output: {has_errors}")
+        # Prüfe zusätzlich auf spezifische Fehlermeldungen im Output
+        success_indicators = ["KOMPILIERUNG ERFOLGREICH", "ERFOLGREICH"]
+        error_indicators = ["KOMPILIERUNG FEHLGESCHLAGEN", "FEHLGESCHLAGEN", "error", "Error", "ERROR"]
+        
+        has_success = any(indicator in result.stdout for indicator in success_indicators)
+        has_errors = any(indicator in result.stderr for indicator in error_indicators)
+        print(f"Erfolgs-Indikatoren gefunden: {has_success}")
+        print(f"Explizite Fehler im STDERR: {has_errors}")
         
         # Prüfe .ex5 Datei (bei erfolgreichem Build)
         ex5_file = temp_file_path.replace('.mq5', '.ex5')
         ex5_exists = os.path.exists(ex5_file)
         print(f"EX5 Datei erstellt: {ex5_exists}")
         
-        # Prüfe log Datei 
-        log_file = temp_file_path.replace('.mq5', '.log')
+        # Prüfe log Datei (das PowerShell-Skript zeigt den Log-Inhalt bereits an)
+        log_file = temp_file_path + '.log'
         log_exists = os.path.exists(log_file)
         print(f"LOG Datei erstellt: {log_exists}")
         
@@ -166,8 +172,13 @@ def test_single_code(code: str, name: str, metaeditor_path: str) -> bool:
         except Exception as e:
             print(f"Cleanup Warnung: {e}")
         
-        # Endgültige Bewertung - pragmatischer Ansatz
-        syntax_ok = (compilation_successful or ex5_exists) and not has_errors
+        # Endgültige Bewertung - das PowerShell-Skript liefert zuverlässigere Ergebnisse
+        # Ein Code ist syntaktisch korrekt wenn:
+        # 1. Return Code 0 (erfolgreich)
+        # 2. EX5 Datei wurde erstellt
+        # 3. Keine Fehler im STDERR
+        # 4. PowerShell-Skript zeigt "ERFOLGREICH" an
+        syntax_ok = (compilation_successful and ex5_exists and not has_errors and has_success)
         
         color = Fore.GREEN if syntax_ok else Fore.RED
         print(f"{color}Endergebnis für {name}: {'✅ SYNTAX OK' if syntax_ok else '❌ SYNTAX FEHLER'}{Style.RESET_ALL}")
@@ -175,20 +186,20 @@ def test_single_code(code: str, name: str, metaeditor_path: str) -> bool:
         return syntax_ok
         
     except subprocess.TimeoutExpired:
-        print(f"{Fore.RED}❌ MetaEditor Timeout{Style.RESET_ALL}")
+        print(f"{Fore.RED}❌ PowerShell Compile-Skript Timeout{Style.RESET_ALL}")
         try:
             if os.path.exists(temp_file_path):
                 os.remove(temp_file_path)
-        except:
+        except Exception:
             pass
         return False
         
     except Exception as e:
-        print(f"{Fore.RED}❌ Fehler bei Kompilierung: {e}{Style.RESET_ALL}")
+        print(f"{Fore.RED}❌ Fehler bei PowerShell Kompilierung: {e}{Style.RESET_ALL}")
         try:
             if os.path.exists(temp_file_path):
                 os.remove(temp_file_path)
-        except:
+        except Exception:
             pass
         return False
 
