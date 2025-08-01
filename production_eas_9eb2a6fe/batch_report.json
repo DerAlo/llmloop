@@ -1,0 +1,11 @@
+{
+  "batch_session": "9eb2a6fe",
+  "start_time": "2025-08-01T22:36:31.236521",
+  "end_time": "2025-08-01T22:59:40.382377",
+  "total_runtime_hours": 0.3858738488888889,
+  "successful_eas": 0,
+  "failed_attempts": 0,
+  "success_rate": 0,
+  "eas_per_hour": 0.0,
+  "successful_eas_details": []
+}
