@@ -1,0 +1,29 @@
+{
+  "models": {
+    "instructor": "qwen3:latest",
+    "coder": "qwen2.5-coder:latest"
+  },
+  "settings": {
+    "max_iterations": 100,
+    "ollama_base_url": "http://localhost:11434",
+    "save_intermediate_results": true,
+    "verbose_logging": true
+  },
+  "ftmo_rules": {
+    "max_daily_loss_percent": 5,
+    "max_total_loss_percent": 10,
+    "profit_target_percent": 10,
+    "min_trading_days": 5,
+    "max_trading_days": 30,
+    "news_trading_allowed": true,
+    "weekend_holding_allowed": true,
+    "expert_advisors_allowed": true
+  },
+  "code_requirements": {
+    "include_risk_management": true,
+    "include_documentation": true,
+    "include_error_handling": true,
+    "mql5_version": "latest",
+    "optimization_level": "high"
+  }
+}

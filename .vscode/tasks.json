@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run LLM Loop",
+			"type": "shell",
+			"command": "C:/Users/snofl/llmloop/.venv/Scripts/python.exe",
+			"args": [
+				"llm_loop.py"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}
