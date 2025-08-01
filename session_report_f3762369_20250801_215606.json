@@ -1,0 +1,66 @@
+{
+  "session_id": "f3762369",
+  "timestamp": "20250801_215606",
+  "duration_minutes": 3.1615919,
+  "final_validation": {
+    "syntax": "❌ FAIL (Score: 0.30) - Kompilierung fehlgeschlagen: === MetaEditor Kompilierung ===\nDatei: C:\\Users\\snofl\\AppData\\Local\\Temp\\tmp05uhul1n.mq5\nLog: C:\\Users\\snofl\\AppData\\Local\\Temp\\tmp05uhul1n.mq5.log\nInclude: C:\\Users\\snofl\\AppData\\Roaming\\MetaQuotes\\T",
+    "ftmo": "❌ FAIL (Score: 0.40) - FTMO-Mängel: ['Fehlende daily_loss Implementation', 'Fehlende total_loss Implementation', 'Fehlende account_equity Implementation']",
+    "quality": "✅ PASS (Score: 0.80) - Qualität: Ausreichende Code-Länge, Gute Dokumentation, Konfigurierbare Parameter, Modulare Struktur, Trading-Logik implementiert",
+    "overall": "❌ FAIL (Score: 0.44) - Gesamt-Score: 0.44"
+  },
+  "evolution_summary": {
+    "status": "active",
+    "session_id": "f3762369",
+    "total_versions": 5,
+    "current_iteration": 4,
+    "compilation_success_rate": 0.0,
+    "quality_trend": [
+      [
+        0,
+        0.33000000000000007
+      ],
+      [
+        0,
+        0.33000000000000007
+      ],
+      [
+        0,
+        0.0
+      ],
+      [
+        1,
+        0.44000000000000006
+      ],
+      [
+        1,
+        0.44000000000000006
+      ]
+    ],
+    "improvement_patterns": {
+      "initial_development": 1
+    },
+    "best_quality_score": 0.44000000000000006,
+    "latest_quality_score": 0.44000000000000006,
+    "recurring_errors": {
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpx0svte8c.mq5 : error 149: 'identifier' - unexpected token": 24,
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpx0svte8c.mq5 : error 256: 'identifier' - undeclared identifier": 11,
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpx0svte8c.mq5 : error 152: 'identifier' - some operator expected": 7,
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpx0svte8c.mq5 : error 199: 'identifier' - wrong parameters count": 7,
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpx0svte8c.mq5 : error 150: 'identifier' - illegal operation use": 2,
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpx0svte8c.mq5 : error 237: 'identifier' - object pointer expected": 2,
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpx0svte8c.mq5 : error 157: 'identifier' - expression expected": 2,
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpx0svte8c.mq5 : error 154: 'identifier' - semicolon expected": 1
+    },
+    "fixed_errors_count": 2,
+    "most_common_error": "c:\\users\\snofl\\appdata\\local\\temp\\tmpx0svte8c.mq5 : error 149: 'identifier' - unexpected token",
+    "evolution_direction": "improving"
+  },
+  "session_stats": {
+    "start_time": "2025-08-01 21:52:56.698312",
+    "total_iterations": 2,
+    "successful_compilations": 0,
+    "quality_improvements": 2,
+    "best_score": 0.44000000000000006
+  },
+  "final_code_file": "FTMO_EA_f3762369_20250801_215606.mq5"
+}

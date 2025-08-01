@@ -1,0 +1,50 @@
+{
+  "session_id": "71b11c34",
+  "timestamp": "20250801_220020",
+  "duration_minutes": 1.7539868333333333,
+  "final_validation": {
+    "syntax": "❌ FAIL (Score: 0.30) - Kompilierung fehlgeschlagen: === MetaEditor Kompilierung ===\nDatei: C:\\Users\\snofl\\AppData\\Local\\Temp\\tmpq_tnmslm.mq5\nLog: C:\\Users\\snofl\\AppData\\Local\\Temp\\tmpq_tnmslm.mq5.log\nInclude: C:\\Users\\snofl\\AppData\\Roaming\\MetaQuotes\\T",
+    "ftmo": "❌ FAIL (Score: 0.60) - FTMO-Mängel: ['Fehlende daily_loss Implementation', 'Fehlende total_loss Implementation']",
+    "quality": "✅ PASS (Score: 0.80) - Qualität: Ausreichende Code-Länge, Gute Dokumentation, Konfigurierbare Parameter, Modulare Struktur, Trading-Logik implementiert",
+    "overall": "❌ FAIL (Score: 0.52) - Gesamt-Score: 0.52"
+  },
+  "evolution_summary": {
+    "status": "active",
+    "session_id": "71b11c34",
+    "total_versions": 2,
+    "current_iteration": 1,
+    "compilation_success_rate": 0.0,
+    "quality_trend": [
+      [
+        0,
+        0.52
+      ],
+      [
+        0,
+        0.52
+      ]
+    ],
+    "improvement_patterns": {},
+    "best_quality_score": 0.52,
+    "latest_quality_score": 0.52,
+    "recurring_errors": {
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpcvo2ieal.mq5 : error 149: 'identifier' - unexpected token": 10,
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpcvo2ieal.mq5 : error 199: 'identifier' - wrong parameters count": 9,
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpcvo2ieal.mq5 : error 256: 'identifier' - undeclared identifier": 3,
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpcvo2ieal.mq5 : error 152: 'identifier' - some operator expected": 2,
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpcvo2ieal.mq5 : error 168: 'identifier' is not a member of 'identifier' type": 1,
+      "c:\\users\\snofl\\appdata\\local\\temp\\tmpcvo2ieal.mq5 : error 157: 'identifier' - expression expected": 1
+    },
+    "fixed_errors_count": 0,
+    "most_common_error": "c:\\users\\snofl\\appdata\\local\\temp\\tmpcvo2ieal.mq5 : error 149: 'identifier' - unexpected token",
+    "evolution_direction": "insufficient_data"
+  },
+  "session_stats": {
+    "start_time": "2025-08-01 21:58:35.431486",
+    "total_iterations": 1,
+    "successful_compilations": 0,
+    "quality_improvements": 1,
+    "best_score": 0.52
+  },
+  "final_code_file": "FTMO_EA_71b11c34_20250801_220020.mq5"
+}

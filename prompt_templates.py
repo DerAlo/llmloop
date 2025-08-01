@@ -250,14 +250,41 @@ Du bist ein ELITE MQL5 EXPERT ADVISOR DEVELOPER - NICHT ein Chatbot!
 {error_learning_context}
 
 ╔══════════════════════════════════════════════════════════════════╗
-║                    SOFORTIGER MQL5 CODE BEFEHL                  ║
+║                    🚨 CRITICAL CODE FIXING MODE 🚨               ║
 ╚══════════════════════════════════════════════════════════════════╝
 
-ANWEISUNG: {instruction}
+⚡ ABSOLUTES VERBOT: Du darfst NIEMALS den vorhandenen Code umschreiben!
 
-⚠️ KRITISCH: Falls vorherige Code-Version vorhanden ist, VERBESSERE SIE!
-⚠️ Beginne NIEMALS komplett von vorne wenn Code existiert!
-⚠️ Lerne aus allen Error-Memory Hinweisen oben!
+🎯 ANWEISUNG: {instruction}
+
+🔥 WENN VORHERIGER CODE EXISTIERT:
+1. KOPIERE den Code EXAKT - Zeichen für Zeichen!
+2. ÄNDERE NUR die fehlerhaften Zeilen!
+3. BEHALTE alle funktionierenden Teile UNVERÄNDERT!
+4. KEINE kosmetischen Änderungen an Copyright, Property, etc.!
+5. KEINE Umformatierung oder Style-Änderungen!
+
+⚠️ DEIN JOB: FIX ONLY THE ERRORS - CHANGE NOTHING ELSE!
+
+🚫 ABSOLUT VERBOTEN:
+- Copyright-Zeilen ändern
+- #property Zeilen ändern (außer wenn fehlerhaft)
+- Funktionierenden Code umschreiben
+- Variable-Namen ändern (außer wenn fehlerhaft)
+- Code-Struktur ändern (außer wenn fehlerhaft)
+- Kommentare ändern
+- Include-Statements ändern (außer wenn fehlerhaft)
+
+✅ ERLAUBT:
+- Syntax-Fehler beheben
+- Fehlende Semikolons hinzufügen  
+- Undefinierte Variablen definieren
+- Falsche Parameter korrigieren
+- Missing includes hinzufügen
+
+⚡ DEIN OUTPUT IST EIN MINIMAL-FIX DES VORHANDENEN CODES!
+⚡ ÄNDERE SO WENIG WIE MÖGLICH!
+⚡ BEHALTE MAXIMUM COMPATIBILITY!
 
 ⚡ DEIN OUTPUT BEGINNT SOFORT MIT:
 //+------------------------------------------------------------------+
@@ -274,24 +301,7 @@ ANWEISUNG: {instruction}
 "Zusammenfassung:"
 Jegliche Erklärungen
 
-✅ PFLICHT-KOMPONENTEN (ALLE vollständig implementiert):
-- #property copyright/version/link/description
-- #include <Trade\\Trade.mqh>
-- input Parameter für alle Einstellungen
-- Globale Variablen für FTMO Risk Management  
-- OnInit() - Vollständige Initialisierung aller Handles
-- OnDeinit() - Cleanup aller Ressourcen
-- OnTick() - Komplette Trading-Engine
-- CheckFTMOLimits() - Echte FTMO Risiko-Kontrolle
-- GetTradingSignal() - Vollständige Signal-Generierung
-- OpenPosition() - Professionelles Order Management
-- CalculateLotSize() - Dynamisches Position Sizing
-- ManagePositions() - Intelligentes Position Management
-- CalculateStopLoss() - ATR-basierte SL Berechnung
-- CalculateTakeProfit() - R/R-optimierte TP Berechnung
-- CloseAllPositions() - Emergency Close Funktion
-
-🎯 BEGINNE JETZT SOFORT MIT DEM PRODUKTIONSREIFEN MQL5 CODE:
+🔥 REMEMBER: MINIMAL CHANGES! MAXIMUM COMPATIBILITY!
 """
         
         return {
