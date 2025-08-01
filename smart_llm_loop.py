@@ -26,6 +26,10 @@ from knowledge_base import KnowledgeBase
 from code_evolution import CodeEvolution, CodeVersion
 from prompt_templates import PromptTemplates
 from cleanup_manager import CleanupManager
+from mql5_error_templates import MQL5ErrorTemplates
+from error_categorizer import ErrorCategorizer, ErrorComplexity
+from incremental_fixer import IncrementalFixer, CodeChange
+from success_pattern_learner import SuccessPatternLearner
 
 # Initialisiere Colorama für Windows-Terminal
 colorama.init()
@@ -288,6 +292,12 @@ class SmartLLMLoop:
         self.validator = CodeValidator()
         self.cleanup_manager = CleanupManager(os.getcwd())
         
+        # 🚀 4-PHASEN OPTIMIERUNG SYSTEM 🚀
+        self.error_categorizer = ErrorCategorizer()
+        self.incremental_fixer = IncrementalFixer(max_changes_per_iteration=5)
+        self.success_learner = SuccessPatternLearner()
+        self.mql5_templates = MQL5ErrorTemplates()
+        
         # LLM Konfiguration
         self.instructor_model = self.config["models"]["instructor"]
         self.coder_model = self.config["models"]["coder"] 
@@ -300,7 +310,9 @@ class SmartLLMLoop:
             "total_iterations": 0,
             "successful_compilations": 0,
             "quality_improvements": 0,
-            "best_score": 0.0
+            "best_score": 0.0,
+            "phase_usage": {'1': 0, '2': 0, '3': 0, '4': 0},
+            "error_reduction_rate": 0.0
         }
     
     def print_header(self, title: str, color: str = Fore.CYAN):
